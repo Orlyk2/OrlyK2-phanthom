@@ -62,7 +62,20 @@
             width: calc(100% * 8); /* 8 slides */
         }
 
-        .slides img {
+       .slides img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 4px solid #fff; /* Añadir borde blanco */
+            border-radius: 10px; /* Añadir esquinas redondeadas */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añadir sombra */
+            transition: transform 0.3s ease; /* Transición suave al hacer hover */
+}
+
+.slides img:hover {
+    transform: scale(1.05); /* Efecto de escala al hacer hover */
+}
+
             width: 100%;
             height: 100%;
             object-fit: cover;
