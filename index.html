@@ -137,6 +137,7 @@
 
         .product-details {
             padding: 20px;
+            text-align: center; /* Centrar el texto */
         }
 
         .product-details h2 {
@@ -145,11 +146,8 @@
 
         .product-details p {
             line-height: 1.6;
-        }
-
-        .price {
-            font-size: 1.5em;
-            margin: 20px 0;
+            color: #fff; /* Letra blanca */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra */
         }
 
         .whatsapp-button {
@@ -169,6 +167,36 @@
 
         .whatsapp-button:hover {
             background-color: #00cc00; /* Verde más oscuro al pasar el mouse */
+        }
+
+        .testimonial {
+            margin: 20px 0;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .testimonial img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .testimonial p {
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .testimonial.vertical {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial.horizontal {
+            overflow: hidden;
         }
 
         .footer {
@@ -225,14 +253,38 @@
                 <p>¿Buscas unos tenis que combinen estilo, rendimiento y comodidad? ¡No busques más! Los Tenis Under Armour Phantom están diseñados pensando en ti. Con una plantilla acolchada y malla transpirable, estos tenis ofrecen una comodidad incomparable, permitiéndote usarlos todo el día sin molestias. Su diseño innovador y moderno no solo te hará destacar, sino que también brindará el soporte necesario para tus actividades diarias y deportivas. La suela de goma antideslizante asegura un agarre excepcional en cualquier superficie, proporcionándote la confianza que necesitas en cada paso.</p>
                 
                 <p>Además, entendemos la importancia de una compra fácil y sin complicaciones. Por eso, te ofrecemos la opción de contactarnos directamente por WhatsApp para resolver todas tus dudas y ayudarte en tu compra. ¡No esperes más! Haz clic en el botón a continuación y adquiere tus Tenis Under Armour Phantom hoy mismo. Descubre por qué tantos usuarios están eligiendo estos tenis y experimenta tú mismo la combinación perfecta de estilo, comodidad y rendimiento.</p>
-                <div class="price">$79.99</div>
-                <a href="https://wa.me/3136299375" class="whatsapp-button">Contactar por WhatsApp</a>
+                <a href="https://wa.me/3136299375" class="whatsapp-button text-center">Contactar por WhatsApp</a>
+            </div>
+
+            <!-- Testimonios -->
+            <div class="testimonials">
+                <div class="testimonial vertical">
+                    <img src="https://via.placeholder.com/50" alt="Imagen de testimonio 1">
+                    <p>"Los tenis son increíbles, muy cómodos y elegantes. ¡Los recomiendo totalmente!"</p>
+                    <p><strong>Maria Sánchez</strong></p>
+                </div>
+                <div class="testimonial horizontal">
+                    <img src="https://via.placeholder.com/50" alt="Imagen de testimonio 2">
+                    <p>"Me encantan mis nuevos tenis, son perfectos para correr y lucen geniales."</p>
+                    <p><strong>Juan Pérez</strong></p>
+                </div>
+                <div class="testimonial vertical">
+                    <img src="https://via.placeholder.com/50" alt="Imagen de testimonio 3">
+                    <p>"Excelente calidad y diseño moderno. Sin duda, los mejores que he tenido."</p>
+                    <p><strong>Lucía Gómez</strong></p>
+                </div>
+                <div class="testimonial horizontal">
+                    <img src="https://via.placeholder.com/50" alt="Imagen de testimonio 4">
+                    <p>"¡No puedo creer lo cómodos que son estos tenis! Definitivamente los compraría de nuevo."</p>
+                    <p><strong>Carlos Rodríguez</strong></p>
+                </div>
             </div>
         </div>
         <div class="footer">
-            <p>© 2024 Tienda de Tenis Deportivos</p>
+            <p>© 2024 ConforTenis </p>
         </div>
     </div>
+
     <script>
         let currentIndex = 0;
         let intervalId;
@@ -307,8 +359,6 @@
                 pauseSlide();
             });
         });
-
-        resumeSlide(); // Comienza la animación automática al cargar la página
     </script>
 </body>
 </html>
