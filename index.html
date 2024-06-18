@@ -48,91 +48,17 @@
         }
 
         .slider {
-            position: relative;
             width: 100%;
-            overflow: hidden;
-            height: 0;
-            padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: calc(100% * 8); /* 8 slides */
+            padding-bottom: 20px; /* Espacio entre imágenes */
         }
 
         .slides img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+            width: 100%; /* Imágenes ocupan todo el ancho */
+            height: auto; /* Altura automática para mantener la proporción */
+            display: block; /* Para evitar espacios entre imágenes */
             border-radius: 10px; /* Borde redondeado */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-            transition: transform 0.3s ease; /* Transición suave */
-        }
-
-        .slides img:hover {
-            transform: scale(1.6); /* Efecto de escala al hacer hover */
-        }
-
-        .navigation {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            pointer-events: none;
-        }
-
-        .navigation button {
-            background-color: rgba(0,0,0,0.5);
-            color: white;
-            padding: 8px;
-            cursor: pointer;
-            pointer-events: all;
-            border: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            font-size: 14px;
-            margin: 0 5px;
-            text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5); /* Sombra gris */
-        }
-
-        .navigation button:hover {
-            background-color: rgba(0,0,0,0.7); /* Más oscuro al pasar el mouse */
-        }
-
-        .navigation button.zoom {
-            background-color: #00ffff; /* Color blanco neon */
-        }
-
-        .navigation button.pause {
-            background-color: #ff00ff; /* Color violeta neon */
-        }
-
-        .indicators {
-            position: absolute;
-            top: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-        }
-
-        .indicators div {
-            width: 10px;
-            height: 10px;
-            background-color: rgba(255,255,255,0.5);
-            margin: 0 5px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .indicators div.active {
-            background-color: white;
+            margin-bottom: 20px; /* Espacio inferior entre imágenes */
         }
 
         .product-details {
@@ -205,13 +131,6 @@
             background-color: #333;
             color: #fff;
         }
-
-        @media (min-width: 768px) {
-            .whatsapp-button {
-                width: auto;
-                margin: 5px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -230,22 +149,6 @@
                     <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/gris%203.png" alt="Imagen de Tenis 6">
                     <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%201.png" alt="Imagen de Tenis 7">
                     <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%202.png" alt="Imagen de Tenis 8">
-                </div>
-                <div class="indicators">
-                    <div class="indicator active"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                    <div class="indicator"></div>
-                </div>
-                <div class="navigation">
-                    <button class="prev">&#10094; Anterior</button>
-                    <button class="pause">Pausar</button>
-                    <button class="zoom">Zoom</button>
-                    <button class="next">Siguiente &#10095;</button>
                 </div>
             </div>
             <div class="product-details">
@@ -281,84 +184,8 @@
             </div>
         </div>
         <div class="footer">
-            <p>© 2024 ConforTenis </p>
+            <p>© 2024 Tienda de Tenis Deportivos</p>
         </div>
     </div>
-
-    <script>
-        let currentIndex = 0;
-        let intervalId;
-        const slides = document.querySelector('.slides');
-        const images = document.querySelectorAll('.slides img');
-        const totalImages = images.length;
-        const indicators = document.querySelectorAll('.indicator');
-
-        function updateSlider() {
-            slides.style.transform = `translateX(-${currentIndex * 100 / totalImages}%)`;
-            indicators.forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentIndex);
-            });
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex === totalImages - 1) ? 0 : currentIndex + 1;
-            updateSlider();
-        }
-
-        function prevSlide() {
-            currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
-            updateSlider();
-        }
-
-        function pauseSlide() {
-            clearInterval(intervalId);
-        }
-
-        function resumeSlide() {
-            intervalId = setInterval(nextSlide, 3000);
-        }
-
-        function zoomImage() {
-            const currentImage = images[currentIndex];
-            currentImage.style.transform = 'scale(1.6)'; // Zoom al 60%
-        }
-
-        function resetZoom() {
-            const currentImage = images[currentIndex];
-            currentImage.style.transform = 'scale(1)';
-        }
-
-        document.querySelector('.prev').addEventListener('click', () => {
-            prevSlide();
-            pauseSlide();
-        });
-
-        document.querySelector('.next').addEventListener('click', () => {
-            nextSlide();
-            pauseSlide();
-        });
-
-        document.querySelector('.pause').addEventListener('click', () => {
-            if (intervalId) {
-                clearInterval(intervalId);
-                intervalId = null;
-            } else {
-                intervalId = setInterval(nextSlide, 3000);
-            }
-        });
-
-        document.querySelector('.zoom').addEventListener('click', () => {
-            zoomImage();
-            setTimeout(resetZoom, 1000); // Resetear el zoom después de 1 segundo
-        });
-
-        indicators.forEach((indicator, index) => {
-            indicator.addEventListener('click', () => {
-                currentIndex = index;
-                updateSlider();
-                pauseSlide();
-            });
-        });
-    </script>
 </body>
 </html>
