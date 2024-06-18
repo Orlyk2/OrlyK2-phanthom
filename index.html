@@ -125,36 +125,37 @@
             margin: 20px 0;
         }
 
-        .whatsapp-button {
-            display: inline-block;
-            background-color: #e63946;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-            margin: 5px 0;
-            width: 100%;
-        }
+      .whatsapp-button {
+    display: inline-block;
+    background-color: #00ff00; /* Cambiar a verde */
+    color: #fff;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    margin: 5px 0;
+    width: 100%;
+    font-size: 1.2em;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
 
-        .whatsapp-button:hover {
-            background-color: #d62828;
-        }
+.whatsapp-button:hover {
+    background-color: #00cc00; /* Cambiar a un verde más oscuro al pasar el mouse */
+}
 
-        .footer {
-            text-align: center;
-            padding: 10px 0;
-            background-color: #333;
-            color: #fff;
-        }
+.header h1 {
+    margin: 0;
+    animation: zoomInOut 5s infinite;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra */
+}
 
-        @media (min-width: 768px) {
-            .whatsapp-button {
-                width: auto;
-                margin: 5px;
-            }
-        }
+@keyframes zoomInOut {
+    0%, 100% { transform: scale(1); color: #ffffff; }
+    50% { transform: scale(1.2); color: #00ffff; }
+}
+
     </style>
 </head>
 <body>
