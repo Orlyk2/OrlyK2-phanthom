@@ -12,8 +12,7 @@
 
         body {
             font-family: Arial, sans-serif;
-            background: url('https://example.com/path-to-your-image.jpg') no-repeat center center fixed;
-            background-size: cover;
+            background-color: #000; /* Fondo negro */
             color: #fff;
             margin: 0;
             padding: 0;
@@ -35,6 +34,8 @@
         .header h1 {
             margin: 0;
             animation: zoomInOut 5s infinite;
+            color: #00ffff; /* Color blanco neon */
+            text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5); /* Sombra gris */
         }
 
         .product {
@@ -43,6 +44,7 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
             overflow: hidden;
             margin: 20px 0;
+            position: relative; /* Para posicionamiento absoluto de controles */
         }
 
         .slider {
@@ -67,29 +69,53 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            border-radius: 10px; /* Borde redondeado */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+            transition: transform 0.3s ease; /* Transición suave */
+        }
+
+        .slides img:hover {
+            transform: scale(1.6); /* Efecto de escala al hacer hover */
         }
 
         .navigation {
             position: absolute;
-            top: 50%;
+            bottom: 10px;
             width: 100%;
             display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
+            justify-content: center;
             pointer-events: none;
         }
 
-        .prev, .next {
+        .navigation button {
             background-color: rgba(0,0,0,0.5);
             color: white;
-            padding: 10px;
+            padding: 8px;
             cursor: pointer;
             pointer-events: all;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            font-size: 14px;
+            margin: 0 5px;
+            text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5); /* Sombra gris */
+        }
+
+        .navigation button:hover {
+            background-color: rgba(0,0,0,0.7); /* Más oscuro al pasar el mouse */
+        }
+
+        .navigation button.zoom {
+            background-color: #00ffff; /* Color blanco neon */
+        }
+
+        .navigation button.pause {
+            background-color: #ff00ff; /* Color violeta neon */
         }
 
         .indicators {
             position: absolute;
-            bottom: 10px;
+            top: 10px;
             width: 100%;
             display: flex;
             justify-content: center;
@@ -126,37 +152,24 @@
             margin: 20px 0;
         }
 
-    .whatsapp-button {
-    display: inline-block;
-    background-color: #00ff00; /* Cambiar a verde */
-    color: #fff;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-    margin: 5px 0;
-    width: 100%;
-    font-size: 1.2em;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
+        .whatsapp-button {
+            display: inline-block;
+            background-color: #00ff00; /* Verde */
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            margin: 5px 0;
+            width: 100%;
+            font-size: 1.2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra */
+        }
 
-.whatsapp-button:hover {
-    background-color: #00cc00; /* Cambiar a un verde más oscuro al pasar el mouse */
-}
-
-.header h1 {
-    margin: 0;
-    animation: zoomInOut 5s infinite;
-    color: #fff;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra */
-}
-
-@keyframes zoomInOut {
-    0%, 100% { transform: scale(1); color: #ffffff; }
-    50% { transform: scale(1.2); color: #00ffff; }
-}
-
+        .whatsapp-button:hover {
+            background-color: #00cc00; /* Verde más oscuro al pasar el mouse */
+        }
 
         .footer {
             text-align: center;
@@ -190,10 +203,6 @@
                     <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%201.png" alt="Imagen de Tenis 7">
                     <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%202.png" alt="Imagen de Tenis 8">
                 </div>
-                <div class="navigation">
-                    <div class="prev">&#10094;</div>
-                    <div class="next">&#10095;</div>
-                </div>
                 <div class="indicators">
                     <div class="indicator active"></div>
                     <div class="indicator"></div>
@@ -203,6 +212,12 @@
                     <div class="indicator"></div>
                     <div class="indicator"></div>
                     <div class="indicator"></div>
+                </div>
+                <div class="navigation">
+                    <button class="prev">&#10094; Anterior</button>
+                    <button class="pause">Pausar</button>
+                    <button class="zoom">Zoom</button>
+                    <button class="next">Siguiente &#10095;</button>
                 </div>
             </div>
             <div class="product-details">
@@ -220,6 +235,7 @@
     </div>
     <script>
         let currentIndex = 0;
+        let intervalId;
         const slides = document.querySelector('.slides');
         const images = document.querySelectorAll('.slides img');
         const totalImages = images.length;
@@ -237,22 +253,62 @@
             updateSlider();
         }
 
-        document.querySelector('.prev').addEventListener('click', () => {
+        function prevSlide() {
             currentIndex = (currentIndex === 0) ? totalImages - 1 : currentIndex - 1;
             updateSlider();
+        }
+
+        function pauseSlide() {
+            clearInterval(intervalId);
+        }
+
+        function resumeSlide() {
+            intervalId = setInterval(nextSlide, 3000);
+        }
+
+        function zoomImage() {
+            const currentImage = images[currentIndex];
+            currentImage.style.transform = 'scale(1.6)'; // Zoom al 60%
+        }
+
+        function resetZoom() {
+            const currentImage = images[currentIndex];
+            currentImage.style.transform = 'scale(1)';
+        }
+
+        document.querySelector('.prev').addEventListener('click', () => {
+            prevSlide();
+            pauseSlide();
         });
 
-        document.querySelector('.next').addEventListener('click', nextSlide);
+        document.querySelector('.next').addEventListener('click', () => {
+            nextSlide();
+            pauseSlide();
+        });
+
+        document.querySelector('.pause').addEventListener('click', () => {
+            if (intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            } else {
+                intervalId = setInterval(nextSlide, 3000);
+            }
+        });
+
+        document.querySelector('.zoom').addEventListener('click', () => {
+            zoomImage();
+            setTimeout(resetZoom, 1000); // Resetear el zoom después de 1 segundo
+        });
 
         indicators.forEach((indicator, index) => {
             indicator.addEventListener('click', () => {
                 currentIndex = index;
                 updateSlider();
+                pauseSlide();
             });
         });
 
-        setInterval(nextSlide, 3000); // Cambia la imagen cada 3 segundos
+        resumeSlide(); // Comienza la animación automática al cargar la página
     </script>
 </body>
 </html>
-
