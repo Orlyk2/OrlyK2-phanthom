@@ -6,8 +6,8 @@
     <title>Zapatillas deportivas Under Armour Hombre y Dama</title>
     <style>
         @keyframes zoomInOut {
-            0%, 100% { transform: scale(1); color: #00ffff; }
-            50% { transform: scale(1.2); color: #ff00ff; }
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
         }
 
         body {
@@ -34,8 +34,6 @@
         .header h1 {
             margin: 0;
             animation: zoomInOut 5s infinite;
-            color: #00ffff; /* Color blanco neon */
-            text-shadow: 2px 2px 4px rgba(128, 128, 128, 0.5); /* Sombra gris */
         }
 
         .product {
@@ -69,19 +67,16 @@
 
         .slides figcaption {
             color: #fff; /* Letra blanca */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra negra */
             font-size: 2em; /* Tamaño grande del título */
             margin-top: 10px;
             animation: zoomInOut 5s infinite;
-        }
-
-        /* Colores personalizados para los títulos */
-        figure:nth-child(odd) figcaption {
-            color: #ff00ff; /* Rosa */
-        }
-
-        figure:nth-child(even) figcaption {
-            color: #00ff00; /* Verde */
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 10px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 100%);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Sombra negra */
         }
 
         .product-details {
@@ -172,36 +167,36 @@
             <div class="slider">
                 <div class="slides">
                     <figure>
-                        <figcaption>Tenis de Running UA HOVR™ Phantom 3 AZUL </figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/azul%201.png" alt="Imagen de Tenis 1">
+                        <figcaption>Under Armour Azul</figcaption>
                     </figure>
                     <figure>
-                        <figcaption></figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/azul%202.png" alt="Imagen de Tenis 2">
+                        <figcaption>Under Armour Azul</figcaption>
                     </figure>
                     <figure>
-                        <figcaption>Tenis de Correr UA HOVR™ Phantom 3 Negra/Gris Military</figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20MILITAR%202.png" alt="Imagen de Tenis 3">
+                        <figcaption>Under Armour Negra Militar</figcaption>
                     </figure>
                     <figure>
-                        <figcaption></figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20MILITAR.png" alt="Imagen de Tenis 4">
+                        <figcaption>Under Armour Negra Militar</figcaption>
                     </figure>
                     <figure>
-                        <figcaption>Tenis de Correr UA HOVR™ Phantom Gris verde</figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/gris%204.png" alt="Imagen de Tenis 5">
+                        <figcaption>Under Armour Gris Verde</figcaption>
                     </figure>
                     <figure>
-                        <figcaption></figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/gris%203.png" alt="Imagen de Tenis 6">
+                        <figcaption>Under Armour Gris Verde</figcaption>
                     </figure>
                     <figure>
-                        <figcaption>Tenis de Correr UA HOVR™ Phantom Negra/Dorado</figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%201.png" alt="Imagen de Tenis 7">
+                        <figcaption>Under Armour Negra Dorado</figcaption>
                     </figure>
                     <figure>
-                        <figcaption>Under Armour Negra Dorado</figcaption>
                         <img src="https://raw.githubusercontent.com/Orlyk2/OrlyK2-phanthom/main/negra%20d%202.png" alt="Imagen de Tenis 8">
+                        <figcaption>Under Armour Negra Dorado</figcaption>
                     </figure>
                 </div>
             </div>
@@ -238,10 +233,8 @@
             </div>
         </div>
         <div class="footer">
-            <p>© 2024 Tienda de Tenis Deportivos Orlyk2</p>
+            <p>© 2024 Tienda de Tenis Deportivos</p>
         </div>
     </div>
 </body>
 </html>
-
-
